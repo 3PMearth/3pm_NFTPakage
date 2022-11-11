@@ -3,6 +3,7 @@ const Web3 = require('web3');
 const CaverExtKAS = require('caver-js-ext-kas');
 const axios = require("axios");
 
+
 const kip17 = require('./lib/kip17');
 const erc721 = require('./lib/erc721');
 const erc1155 = require('./lib/erc1155');
@@ -48,7 +49,7 @@ class nft_browser_3pm {
       if (window.klaytn) {
            if (window.klaytn.isKaikas) {
               const wallet = await window.klaytn.enable();
-              const address = window.klaytn.selectedAddress;    
+              const address = await window.klaytn.selectedAddress;    
               if (address != 'undefined') 
               {
                   this._wallet = "";
@@ -138,7 +139,6 @@ class nft_browser_3pm {
       try {
         for (let con of resultContract) {
           const NftContract = con[0];
-          console.log("result Contract : " + NftContract);
 
           tokenContract = await new caver.klay.Contract(kip17 , con[0]);
 
